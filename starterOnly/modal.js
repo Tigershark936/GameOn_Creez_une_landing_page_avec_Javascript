@@ -25,11 +25,10 @@ function editNav() {
   }
 }
 
-//--------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
 
 // Section Formulaire
 const form = document.querySelector("form");
-const formImput = document.querySelector(".formData");
 let errorMessage = "";
 
 
@@ -53,7 +52,7 @@ firstnameInput.addEventListener('input', () => {
 });
 
 
-// SURNAME 
+// SURNAME ---------------------------------------------------------------------------------------
 const surnameInput = document.getElementById("surname");
 let validateSurname = "";
 
@@ -73,7 +72,7 @@ surnameInput.addEventListener("input", () => {
 });
 
 
-// EMAIL 
+// EMAIL -----------------------------------------------------------------------------------------
 const emailInput = document.getElementById("email");
 let validateEmail = "";
 
@@ -102,16 +101,77 @@ emailInput.addEventListener("input", () => {
 });
 
 
+// DATE OF BIRTH --------------------------------------------------------------------------------
+const dateOfBirthInput = document.getElementById("dateOfBirth");
+let validateDateOfBirth = "";
 
-// VALIDATION OF FORM
+
+
+// HOW MANY TOURNAMENT QUESTION -----------------------------------------------------------------
+const quantityInput = document.getElementById("quantity");
+let validateQuantity = "";
+
+quantityInput.addEventListener("input", () => {
+  validateQuantity = quantityInput.value.trim();
+
+  if (validateQuantity === ""){
+    errorMessage = "Pour le nombre de concours, une valeur numérique doît être saisie."
+    quantityInput.style.border = "2px solid red";
+  } else if (isNaN(validateQuantity) || validateQuantity < 1 || validateQuantity > 99)
+    //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
+    {
+    errorMessage = "Veuillez saisir uniquement un nombre entre 1 et 99.";
+    quantityInput.style.border = "2px solid red";
+  } else {
+    errorMessage = "";
+    quantityInput.style.border = "none"; 
+  }
+
+  console.log(validateQuantity);
+
+});
+
+
+// WHICH TOURNAMENT IN THIS YEAR ----------------------------------------------------------------
+const LocationCheckbox = document.querySelector('input[name="location"]');
+let validateLocation = "";
+
+LocationCheckbox.addEventListener("change", () => {
+  if (validateLocation.target.checked);
+})
+
+
+// VALIDATION OF FORM ---------------------------------------------------------------------------
+const formImput = document.querySelectorAll(".formData");
+let validateForm = true;
+
+formImput.forEach((FormData) => {
+  FormData.addEventListener("input", (validateForm));
+  
+  if (formImput.value.trim() === ""){
+    form = false;
+    formImput.style.border = "2px solid red";
+  } else {
+    formImput.style.border = "none";
+  }
+  
+  if (!validateForm){
+    SubmitEvent.preventDefault();
+    alert("Tous les champs doivent être remplis !");
+  }
+  
+});
+
+
+
 form.addEventListener( "submit", (e) => {
   e.preventDefault();
 
-  if (checkbox1.checked) {
-    alert ('Merci pour votre inscription');
-    modalBackground.style.display = "none";
-  } else {
+  if (!checkbox1.checked) {
     alert ("Veuillez accepter les CVG");
+  } else {
+    alert ('Merci ! Votre réservation a été reçue.');
+    modalBackground.style.display = "none";
   }
 });
 
