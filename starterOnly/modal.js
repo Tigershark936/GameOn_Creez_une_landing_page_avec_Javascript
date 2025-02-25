@@ -29,22 +29,23 @@ function editNav() {
 
 // Section Formulaire
 const form = document.querySelector("form");
-let errorMessage = "";
 
 
 // FIRSTNAME 
 const firstnameInput = document.getElementById("firstname");
+let errorMessageFirstname = document.getElementById("errorMessageFirstname");
 let validateFirstname = "";
+
 
 firstnameInput.addEventListener('input', () => {
   validateFirstname = firstnameInput.value.trim(); // .trim() suppression des espaces inutiles et ne les prend pas en compte.
 
   if (validateFirstname.length < 2) {
-    errorMessage = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+    errorMessageFirstname.textContent = "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
     firstnameInput.style.border = "2px solid red";
-    firstnameInput.textContent = errorMessage;
-  } else {
-    errorMessage = ""; // Pas d'erreur de nombres de caractères
+  } 
+  else {
+    firstnameInput.errorMessageFirstname.remove(".errorMessage");
     firstnameInput.style.border = "none";
   }
 
@@ -54,17 +55,18 @@ firstnameInput.addEventListener('input', () => {
 
 // SURNAME ---------------------------------------------------------------------------------------
 const surnameInput = document.getElementById("surname");
+let errorMessageSurname = document.getElementById("errorMessageSurname");
 let validateSurname = "";
+
 
 surnameInput.addEventListener("input", () => {
   validateSurname = surnameInput.value.trim();
 
   if (validateSurname.length < 2){
-    errorMessage = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+    errorMessageSurname.textContent ="Veuillez entrer 2 caractères ou plus pour le champ du nom.";
     surnameInput.style.border = "2px solid red";
-    surnameInput.textContent = errorMessage;
   } else {
-    errorMessage = "";
+    errorMessageSurname.textContent = "";
     surnameInput.style.border = "none";
   }
 
@@ -74,25 +76,27 @@ surnameInput.addEventListener("input", () => {
 
 // EMAIL -----------------------------------------------------------------------------------------
 const emailInput = document.getElementById("email");
+let errorMessageEmail = document.getElementById("errorMessageEmail");
 let validateEmail = "";
+
 
 emailInput.addEventListener("input", () => {
   validateEmail = emailInput.value.trim();
 
   if ( validateEmail === ""){
-    errorMessage = "Le champs email ne peut pas être vide.";
+    errorMessageEmail.textContent = "Le champs email ne peut pas être vide.";
     emailInput.style.border = "2px solid red";
   } else if (!validateEmail.includes("@")) {
-    errorMessage = "Veuillez inclure '@' dans l'adresse e-mail il manque un symbole '@'";
+    errorMessageEmail.textContent  = "Veuillez inclure '@' dans l'adresse e-mail il manque un symbole '@'";
     emailInput.style.border = "2px solid red";
   } else if (!validateEmail.split("@")[1]) {
-    errorMessage = "Veuillez  saisir la partie manquante après le symbole '@'. L'adresse est incomplète";
+    errorMessageEmail.textContent = "Veuillez  saisir la partie manquante après le symbole '@'. L'adresse est incomplète";
     emailInput.style.border = "2px solid red";
   } else if (!validateEmail.includes(".")) {
-    errorMessage = "Le domaine de l'email doit contenir un '.'";
+    errorMessageEmail.textContent = "Le domaine de l'email doit contenir un '.'";
     emailInput.style.border = "2px solid red";
   } else {
-    errorMessage = "";
+    errorMessageEmail.textContent = "";
     emailInput.style.border = "none";   
   }
 
@@ -103,8 +107,16 @@ emailInput.addEventListener("input", () => {
 
 // DATE OF BIRTH --------------------------------------------------------------------------------
 const dateOfBirthInput = document.getElementById("dateOfBirth");
+let errorMessageDate = document.getElementById("errorMessageDateOfBirth");
 let validateDateOfBirth = "";
 
+console.log(dateOfBirthInput);
+console.log(errorMessageDate);
+
+dateOfBirthInput.addEventListener("input", (e) => {
+  console.log(e);
+  
+});
 
 
 // HOW MANY TOURNAMENT QUESTION -----------------------------------------------------------------

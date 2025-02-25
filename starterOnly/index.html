@@ -55,30 +55,37 @@
               <div class="formData">
                 <label for="firstname">Prénom</label>
                 <input class="text-control" type="text" id="firstname" name="firstname"/>
+                <p class="errorMessage" id="errorMessageFirstname"></p>
               </div>
 
               <div class="formData">
                 <label for="surname">Nom</label>
                 <input class="text-control" type="text" id="surname" name="surname"/>
+                <p class="errorMessage" id="errorMessageSurname"></p>
               </div>
 
               <div class="formData">
                 <label for="email">E-mail</label>
                 <input class="text-control" type="email" id="email" name="email"/>
+                <p
+                class="errorMessage" id="errorMessageEmail"></p>
               </div>
 
               <div class="formData">
                 <label for="dateOfBirth">Date de naissance</label>
                 <input class="text-control" type="date" id="dateOfBirth" name="dateOfBirth"/>
+                <p class="errorMessage" id="errorMessageDateOfBirth"></p>
               </div>
 
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
                 <input type="number" class="text-control" id="quantity" name="quantity">
               </div>
+              <p class="errorMessage">Pour le nombre de concours, une valeur numérique doît être saisie.</p>
               
               <fieldset class="formData">
                 <legend class="text-legend">A quel tournoi souhaitez-vous participer cette année ?</legend>
+                <p class="errorMessage">Vous devez choisir une option minimum.</p>
 
                 <input class="checkbox-input" type="radio" id="location1" name="location" value="New York"/>
                 <label class="checkbox-label" for="location1"><span class="checkbox-icon"></span>New York</label>
@@ -103,6 +110,7 @@
                 <input class="checkbox-input" type="checkbox" id="checkbox1" required checked/>
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>J'ai lu et accepté les conditions d'utilisation.</label>
+                  <p class="errorMessage">Vous devez vérifier que vous acceptez les termes et conditions.</p>
 
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
