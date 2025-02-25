@@ -113,8 +113,20 @@ let validateDateOfBirth = "";
 console.log(dateOfBirthInput);
 console.log(errorMessageDate);
 
-dateOfBirthInput.addEventListener("input", (e) => {
-  console.log(e);
+dateOfBirthInput.addEventListener("input", () => {
+  validateDateOfBirth = dateOfBirthInput.value.trim();
+
+  if (validateDateOfBirth === ""){
+    errorMessageDate.textContent = "Vous devez entrer votre date de naissance.";
+    dateOfBirthInput.style.border = "2px solid red";
+  } else if{
+    
+  } else {
+    errorMessageDate.textContent = "";
+    dateOfBirthInput.style.border = "none";
+  }
+  
+  console.log(validateDateOfBirth);
   
 });
 
