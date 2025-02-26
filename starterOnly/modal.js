@@ -25,13 +25,13 @@ function editNav() {
   }
 }
 
-//----------------------------------------------------------------------------------------------
+//----------------------------------------FORMULAIRE---------------------------------------------
 
 // Section Formulaire
 const form = document.querySelector("form");
 
 
-// FIRSTNAME 
+// FIRSTNAME -----------------------------------------------------------------------------------
 const firstnameInput = document.getElementById("firstname");
 let errorMessageFirstname = document.getElementById("errorMessageFirstname");
 let validateFirstname = "";
@@ -136,7 +136,7 @@ const quantityInput = document.getElementById("quantity");
 let errorMessageQuantity = document.getElementById("errorMessageTournemant")
 let validateQuantity = "";
 
-quantityInput.addEventListener("input", () => {
+quantityInput.addEventListener("input", function() {
   validateQuantity = quantityInput.value.trim();
 
   if (validateQuantity === ""){
@@ -158,34 +158,35 @@ quantityInput.addEventListener("input", () => {
 
 
 // WHICH TOURNAMENT IN THIS YEAR ----------------------------------------------------------------
-const LocationCheckbox = document.querySelector('input[name="location"]');
+
+// Sélectionne tous les boutons radio du groupe "location"
+let LocationCheckboxes = document.querySelectorAll('input[type=radio]');
+let errorMessageCheckbox = document.getElementById("errorMessageLocation");
 let validateLocation = "";
 
-LocationCheckbox.addEventListener("change", () => {
-  if (validateLocation.target.checked);
-})
+console.log(LocationCheckboxes);
+console.log(LocationCheckboxes.length);
+
+
+for (let i = 0; i < LocationCheckboxes.length; i++){
+  if (LocationCheckboxes[i].checked){
+    console.log(LocationCheckboxes[i].value);
+    errorMessageCheckbox.textContent = "";
+  }
+}
 
 
 // VALIDATION OF FORM ---------------------------------------------------------------------------
-const formImput = document.querySelectorAll(".formData");
-let validateForm = true;
+let conditionsCvg = document.getElementById("checkbox1");
+console.log(conditionsCvg.checked);
 
-formImput.forEach((FormData) => {
-  FormData.addEventListener("input", (validateForm));
   
-  if (formImput.value.trim() === ""){
-    form = false;
-    formImput.style.border = "2px solid red";
-  } else {
-    formImput.style.border = "none";
-  }
+//   if (!validateForm){
+//     SubmitEvent.preventDefault();
+//     alert("Tous les champs doivent être remplis !");
+//   }
   
-  if (!validateForm){
-    SubmitEvent.preventDefault();
-    alert("Tous les champs doivent être remplis !");
-  }
-  
-});
+// });
 
 
 
