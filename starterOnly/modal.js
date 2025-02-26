@@ -116,15 +116,15 @@ console.log(errorMessageDate);
 dateOfBirthInput.addEventListener("input", () => {
   validateDateOfBirth = dateOfBirthInput.value.trim();
 
-  if (validateDateOfBirth === ""){
-    errorMessageDate.textContent = "Vous devez entrer votre date de naissance.";
-    dateOfBirthInput.style.border = "2px solid red";
-  } else if{
+  // if (validateDateOfBirth === ""){
+  //   errorMessageDate.textContent = "Vous devez entrer votre date de naissance.";
+  //   dateOfBirthInput.style.border = "2px solid red";
+  // } else if{
     
-  } else {
-    errorMessageDate.textContent = "";
-    dateOfBirthInput.style.border = "none";
-  }
+  // } else {
+  //   errorMessageDate.textContent = "";
+  //   dateOfBirthInput.style.border = "none";
+  // }
   
   console.log(validateDateOfBirth);
   
@@ -133,21 +133,22 @@ dateOfBirthInput.addEventListener("input", () => {
 
 // HOW MANY TOURNAMENT QUESTION -----------------------------------------------------------------
 const quantityInput = document.getElementById("quantity");
+let errorMessageQuantity = document.getElementById("errorMessageTournemant")
 let validateQuantity = "";
 
 quantityInput.addEventListener("input", () => {
   validateQuantity = quantityInput.value.trim();
 
   if (validateQuantity === ""){
-    errorMessage = "Pour le nombre de concours, une valeur numérique doît être saisie."
+    errorMessageQuantity.textContent = "Pour le nombre de concours, une valeur numérique doît être saisie."
     quantityInput.style.border = "2px solid red";
   } else if (isNaN(validateQuantity) || validateQuantity < 1 || validateQuantity > 99)
     //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
     {
-    errorMessage = "Veuillez saisir uniquement un nombre entre 1 et 99.";
+    errorMessageQuantity.textContent = "Veuillez saisir uniquement un nombre entre 1 et 99.";
     quantityInput.style.border = "2px solid red";
   } else {
-    errorMessage = "";
+    errorMessageQuantity.textContent = "";
     quantityInput.style.border = "none"; 
   }
 
