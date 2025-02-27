@@ -110,8 +110,8 @@ const dateOfBirthInput = document.getElementById("dateOfBirth");
 let errorMessageDate = document.getElementById("errorMessageDateOfBirth");
 let validateDateOfBirth = "";
 
-console.log(dateOfBirthInput);
-console.log(errorMessageDate);
+// console.log(dateOfBirthInput);
+// console.log(errorMessageDate);
 
 dateOfBirthInput.addEventListener("input", () => {
   validateDateOfBirth = dateOfBirthInput.value.trim();
@@ -160,25 +160,38 @@ quantityInput.addEventListener("input", function() {
 // WHICH TOURNAMENT IN THIS YEAR ----------------------------------------------------------------
 
 // Sélectionne tous les boutons radio du groupe "location"
-let LocationCheckboxes = document.querySelectorAll('input[type=radio]');
+let locationCheckboxes = document.querySelectorAll('input[type=radio]');
 let errorMessageCheckbox = document.getElementById("errorMessageLocation");
-let validateLocation = "";
-
-console.log(LocationCheckboxes);
-console.log(LocationCheckboxes.length);
 
 
-for (let i = 0; i < LocationCheckboxes.length; i++){
-  if (LocationCheckboxes[i].checked){
-    console.log(LocationCheckboxes[i].value);
-    errorMessageCheckbox.textContent = "";
+// Fonction qui va permettre de vérifier la sélection
+function checkSelection() {
+  let selected = false; //  On signifie qu'on suppose qu'aucun radio n'est sélectionné au départ.
+
+  for (let i = 0; i < locationCheckboxes.length; i++) {
+    if (locationCheckboxes[i].checked) { 
+        console.log(locationCheckboxes[i].value);
+        errorMessageCheckbox.textContent = "";
+        selected = true;
+        break; // Stop la boucle après avoir trouvé un sélectionné
+    } else {
+      errorMessageCheckbox.textContent = "Vous devez choisir une option minimum.";
+    }
   }
 }
+
+// Ajoute un écouteur d'événement sur TOUS les boutons radio du fieldset
+for (let i = 0; i < locationCheckboxes.length; i++) {
+  locationCheckboxes[i].addEventListener("change", checkSelection);
+}
+
+// Vérifie la sélection dès le chargement dans la console 
+checkSelection();
 
 
 // VALIDATION OF FORM ---------------------------------------------------------------------------
 let conditionsCvg = document.getElementById("checkbox1");
-console.log(conditionsCvg.checked);
+// console.log(conditionsCvg.checked);
 
   
 //   if (!validateForm){
