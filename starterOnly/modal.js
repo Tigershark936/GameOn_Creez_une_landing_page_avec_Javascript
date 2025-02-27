@@ -44,9 +44,9 @@ for (let i = 0; Inputs.length; i++){
   }
 }
 
-form.addEventListener( "submit", (e) => {
-  e.preventDefault();
-});
+// form.addEventListener( "submit", (e) => {
+//   e.preventDefault();
+// });
 
 // FIRSTNAME -----------------------------------------------------------------------------------
 const firstnameInput = document.getElementById("firstname");
@@ -62,7 +62,7 @@ firstnameInput.addEventListener('input', () => {
     firstnameInput.style.border = "2px solid red";
   } 
   else {
-    firstnameInput.errorMessageFirstname.remove(".errorMessage");
+    errorMessageFirstname.textContent = "";
     firstnameInput.style.border = "none";
   }
 
