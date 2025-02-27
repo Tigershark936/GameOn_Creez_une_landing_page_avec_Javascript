@@ -28,8 +28,25 @@ function editNav() {
 //----------------------------------------FORMULAIRE---------------------------------------------
 
 // Section Formulaire
-const form = document.querySelector("form");
+const formData = document.querySelectorAll(".formData");
+let Inputs = document.querySelectorAll("input");
+let errorMessageForm = document.getElementById("errorMessageForm");
 
+console.log(Inputs);
+
+for (let i = 0; Inputs.length; i++){
+  if (!Inputs[i].value) {
+    errorMessageForm.textContent = "Tous les champs doivent être remplis !";
+    break;
+  } else {
+    errorMessageForm.textContent = "";
+    modalBackground.style.display = "none";
+  }
+}
+
+form.addEventListener( "submit", (e) => {
+  e.preventDefault();
+});
 
 // FIRSTNAME -----------------------------------------------------------------------------------
 const firstnameInput = document.getElementById("firstname");
@@ -116,15 +133,13 @@ let validateDateOfBirth = "";
 dateOfBirthInput.addEventListener("input", () => {
   validateDateOfBirth = dateOfBirthInput.value.trim();
 
-  // if (validateDateOfBirth === ""){
-  //   errorMessageDate.textContent = "Vous devez entrer votre date de naissance.";
-  //   dateOfBirthInput.style.border = "2px solid red";
-  // } else if{
-    
-  // } else {
-  //   errorMessageDate.textContent = "";
-  //   dateOfBirthInput.style.border = "none";
-  // }
+  if (validateDateOfBirth === ""){
+    errorMessageDate.textContent = "Vous devez entrer votre date de naissance.";
+    dateOfBirthInput.style.border = "2px solid red";
+  } else {
+    errorMessageDate.textContent = "";
+    dateOfBirthInput.style.border = "none";
+  }
   
   console.log(validateDateOfBirth);
   
@@ -189,29 +204,18 @@ for (let i = 0; i < locationCheckboxes.length; i++) {
 checkSelection();
 
 
-// VALIDATION OF FORM ---------------------------------------------------------------------------
+// VALIDATION CVG OF FORM ---------------------------------------------------------------------------
 let conditionsCvg = document.getElementById("checkbox1");
+let errorMessageCondition = document.getElementById("errorMessageCvg")
 // console.log(conditionsCvg.checked);
 
   
-//   if (!validateForm){
-//     SubmitEvent.preventDefault();
-//     alert("Tous les champs doivent être remplis !");
-//   }
+if (!checkbox1.checked) {
+  errorMessageCondition.textContent = "Vous devez vérifier que vous acceptez les termes et conditions.";
+} else {
+  errorMessageCondition.textContent = "";
+};
+
   
-// });
-
-
-
-form.addEventListener( "submit", (e) => {
-  e.preventDefault();
-
-  if (!checkbox1.checked) {
-    alert ("Veuillez accepter les CVG");
-  } else {
-    alert ('Merci ! Votre réservation a été reçue.');
-    modalBackground.style.display = "none";
-  }
-});
 
 

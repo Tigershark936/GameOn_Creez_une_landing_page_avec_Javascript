@@ -106,10 +106,10 @@
               </fieldset>
 
               <div class="formData">
-                <input class="checkbox-input" type="checkbox" id="checkbox1" required checked/>
+                <input class="checkbox-input" type="checkbox" id="checkbox1"/>
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>J'ai lu et accepté les conditions d'utilisation.</label>
-                  <p class="errorMessage">Vous devez vérifier que vous acceptez les termes et conditions.</p>
+                  <p class="errorMessage" id="errorMessageCvg"></p>
 
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -117,7 +117,9 @@
               </div>
 
               <input class="btn-submit" type="submit" class="button" value="C'est parti"/>
-              <div></div>
+              <div>
+                <p class=" errorMessage" id="errorMessageForm"></p>
+              </div>
 
             </form>
 
