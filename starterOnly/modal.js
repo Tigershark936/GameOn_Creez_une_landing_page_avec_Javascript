@@ -188,17 +188,24 @@ console.log(quantityInput.value);
 // Sert à envoyer le message d'erreur dans le HTML
 const errorQuantity = document.getElementById("errorMessageTournemant");
 
+// Empêcher la saisie de caractères non numériques et empêche les utilisateurs de taper e, E, -, +, ou .
+quantityInput.addEventListener("keydown", (event) => {
+  if (event.key === "e" || event.key === "E" || event.key === "-" || event.key === "+" || event.key === "."){
+    event.preventDefault();
+  }
+});
+
 const validateQuantityTournemant = () => {
   // Vérifie si le champs est rempli
   if (!quantityInput.value){
     errorQuantity.innerText = `Pour le nombre de concours, une valeur numérique doît être saisie.`;
     quantityInput.style.border = "2px solid red";
     // permet que l'utilisateur saisis un chiffre ou un nombre entre 1 et 99
-  } else if (isNaN(validateQuantityTournemant) || quantityInput.value < 1 || quantityInput.value > 99) {
+  } else if (isNaN(quantityInput.value) || quantityInput.value < 1 || quantityInput.value > 99) {
     //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
     errorQuantity.innerText = `Veuillez saisir uniquement un nombre entre 1 et 99.`;
     quantityInput.style.border = "2px solid red";
-  } else if(quantityInput.value < 1 || quantityInput.value > 99){
+  } else {
     errorQuantity.innerText = ``;
     quantityInput.style.border = "none";
   }
@@ -241,6 +248,7 @@ console.log(validateCvg);
 const errorMessageCvg = document.getElementById("errorMessageCvg");
 
 function validateCvgCheckbox(){
+  // Obligation d'avoir la checkbox CVG check pour le submit du formulaire
   if(!validateCvg.checked){
     errorMessageCvg.innerText = `Vous devez vérifier que vous acceptez les termes et conditions.`;
   } else {
