@@ -32,6 +32,8 @@ function editNav() {
 // sélectionne l'élément <form> de la page HTML.
 const form = document.querySelector("form");
 let textErrorMsg = document.getElementById("errorMessageForm");
+const messageConfirmationForm = document.getElementById("confirmationForm")
+const validateFormButton = document.getElementById("validateForm")
 
 
 form.addEventListener( "submit", (e) => {
@@ -68,6 +70,11 @@ form.addEventListener( "submit", (e) => {
   checkLocation()
   validateCvgCheckbox()
   
+ //Quand on clic sur le bouton c'est parti la modal doit se fermer et a la place on a un message de confirmation qui apparait à la place
+ validateFormButton.addEventListener("click", () => {
+    modalBackground.style.display = "none"
+    messageConfirmationForm.style.display = "block"
+  })
 });
 
 
@@ -172,6 +179,9 @@ function validateDateOfBirth(){
   if (!dateOfBirthInput.value){
     errorDateOfBirth.innerText = `Vous devez entrer votre date de naissance.`;
     dateOfBirthInput.style.border = "2px solid red";
+  } else {
+    errorDateOfBirth.innerText = ``;
+    dateOfBirthInput.style.border = 'none';
   }
 };
 

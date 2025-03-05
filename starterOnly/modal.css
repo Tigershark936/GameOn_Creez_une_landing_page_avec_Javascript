@@ -20,6 +20,14 @@ body {
   font-size: 18px;
 }
 
+h2 {
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 400;
+  text-align: center;
+  align-items: center;
+}
+
 p {
   margin-bottom: 0;
   padding: 0.5vw;
@@ -97,8 +105,6 @@ img {
     text-align: left;
   }
 }
-
-
 
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
@@ -189,6 +195,23 @@ main {
   padding-top: 10px;
 }
 
+#confirmationForm {
+  margin: 5% auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  display: none;
+  z-index: 2;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+}
+
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
@@ -239,8 +262,8 @@ fieldset{
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
+
+/* input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
@@ -310,7 +333,7 @@ input[data-error]::after {
   top: 19%;
 }
 
-.close {
+.close, .closeCheckForm {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -336,8 +359,26 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 
+.closeCheckForm:before,
+.closeCheckForm:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.closeCheckForm:before {
+  transform: rotate(45deg);
+}
+.closeCheckForm:after {
+  transform: rotate(-45deg);
+}
+
+
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-checkForm {
   background: #fe142f;
   display: block;
   margin: 0 auto;
