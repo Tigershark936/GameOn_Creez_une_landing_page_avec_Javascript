@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="modal.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet"/>
-    <link rel="icon" type="image.png" size="32x32" href="logo.png">
+    <!-- <link rel="icon" type="image.png" size="32x32" href="logo.png"> -->
   </head>
 
   <body>
@@ -17,7 +17,7 @@
         <img alt="logo GameOn" src="logo.png" width="auto" height="auto" />
       </div>
 
-      <div class="main-navbar">
+      <nav class="main-navbar">
         <!-- <a href="#" class="active"><span>Accueil</span></a> -->
         <a href="#"><span>Détails de l'évènement</span></a>
         <a href="#"><span>À propos</span></a>
@@ -26,7 +26,7 @@
         <a href="javascript:void(0);" class="icon" onclick="editNav()">
           <i class="fa fa-bars"></i>
         </a>
-      </div>
+      </nav>
     </div>
 
     <main>
@@ -79,7 +79,7 @@
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
                 <input type="number" class="text-control" id="quantity" name="quantity">
-                <p class="errorMessage" id="errorMessageTournemant"></p>
+                <p class="errorMessage" id="errorMessageTournament"></p>
               </div>
               
               <fieldset class="formData">
@@ -116,7 +116,7 @@
                   <span class="checkbox-icon"></span>Je souhaite être prévenu des prochains évènements.</label>
               </div>
 
-              <input class="btn-submit" type="submit" class="button" value="C'est parti" id="validateForm"/>
+              <input class="btn-submit button" type="submit" value="C'est parti" id="validateForm"/>
               <div>
                 <p class=" errorMessage" id="errorMessageForm"></p>
               </div>

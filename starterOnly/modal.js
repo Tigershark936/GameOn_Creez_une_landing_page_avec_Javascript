@@ -74,7 +74,7 @@ form.addEventListener( "submit", (e) => {
 
   //--------------------------------------------------------------------------------------------
   
- //Quand on clic sur le bouton c'est parti la modal doit se fermer et a la place on a un message de confirmation qui apparait à la place
+ //Quand on clic sur le bouton c'est parti la modal doit se fermer et à la place on a un message de confirmation qui apparait à la place
  validateFormButton.addEventListener("click", () => {
     form.style.display = "none"
     messageConfirmationForm.style.display = "block"
@@ -204,7 +204,7 @@ console.log(quantityInput);
 console.log(quantityInput.value);
 
 // Sert à envoyer le message d'erreur dans le HTML
-const errorQuantity = document.getElementById("errorMessageTournemant");
+const errorQuantity = document.getElementById("errorMessageTournament");
 
 // Empêcher la saisie de caractères non numériques et empêche les utilisateurs de taper e, E, -, +, ou .
 quantityInput.addEventListener("keydown", (event) => {
