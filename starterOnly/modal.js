@@ -173,6 +173,8 @@ function validateEmail(){
 // récupération du champs dateOfBirth
 const dateOfBirthInput = document.getElementById("dateOfBirth");
 console.log(dateOfBirthInput);
+const dateOfBirthRegExp = new RegExp ('/^(?:(?:31([\/\-\.])(0?[13578]|1[02])\x01|(?:(?:29|30)\x02(0?[13-9]|1[0-2])\x02))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29([\/\-\.])0?2\x03(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])([\/\-\.])(0?[1-9]|1[0-2])\x04(?:(?:1[6-9]|[2-9]\d)?\d{2})$/i');
+const dateOfBirthValidate = dateOfBirthInput.value;
 
 
 // récupèrer la valeur de saisie de dateOfBirth 
@@ -192,6 +194,10 @@ function validateDateOfBirth(){
     dateOfBirthInput.style.border = 'none';
   }
 };
+
+//La date est valide (en respectant les jours/mois/années, y compris les années bissextiles),
+//La date est inférieure à aujourd'hui (pas de dates futures),
+//L'âge est d'au moins 16 ans (donc la date de naissance doit être au plus "Aujourd’hui - 16 ans"),
 
 
 // HOW MANY TOURNAMENT QUESTION -----------------------------------------------------------------
