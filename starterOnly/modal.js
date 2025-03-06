@@ -32,8 +32,9 @@ function editNav() {
 // sélectionne l'élément <form> de la page HTML.
 const form = document.querySelector("form");
 let textErrorMsg = document.getElementById("errorMessageForm");
-const messageConfirmationForm = document.getElementById("confirmationForm")
 const validateFormButton = document.getElementById("validateForm")
+const messageConfirmationForm = document.getElementById("confirmationForm")
+const ButtoncloseModalConfirmation = document.getElementById("closeModalConfirmation")
 
 
 form.addEventListener( "submit", (e) => {
@@ -69,14 +70,21 @@ form.addEventListener( "submit", (e) => {
   validateQuantityTournemant()
   checkLocation()
   validateCvgCheckbox()
+
+
+  //--------------------------------------------------------------------------------------------
   
  //Quand on clic sur le bouton c'est parti la modal doit se fermer et a la place on a un message de confirmation qui apparait à la place
  validateFormButton.addEventListener("click", () => {
-    modalBackground.style.display = "none"
+    form.style.display = "none"
     messageConfirmationForm.style.display = "block"
   })
 });
 
+// Close modal of Message and Bground for validate the inscription 
+ButtoncloseModalConfirmation.addEventListener('click', () => {
+  modalBackground.style.display = "none";
+});
 
 // FIRSTNAME -----------------------------------------------------------------------------------
 
