@@ -57,11 +57,11 @@ form.addEventListener( "submit", (e) => {
       inputsForm[i].style.border = "2px solid red";
       break; // dès qu'un champ est vide, on sort de la boucle "for"
     } else {
-      validateForm = true;
-      textErrorMsg.innerText =  "";
+      document.querySelector("form").style.display = "none";
+      document.querySelector("messageConfirmationForm").style.display = "block";
     }
   } 
-  
+
   // On appelle d'autres fonctions pour des validations de champs spécifiques au formulaire 
   validateFirstname()
   validateSurname()
@@ -70,21 +70,9 @@ form.addEventListener( "submit", (e) => {
   validateQuantityTournemant()
   checkLocation()
   validateCvgCheckbox()
-
-
-  //--------------------------------------------------------------------------------------------
   
- //Quand on clic sur le bouton c'est parti la modal doit se fermer et à la place on a un message de confirmation qui apparait à la place
- validateFormButton.addEventListener("click", () => {
-    form.style.display = "none"
-    messageConfirmationForm.style.display = "block"
-  })
 });
-
-// Close modal of Message and Bground for validate the inscription 
-ButtoncloseModalConfirmation.addEventListener('click', () => {
-  modalBackground.style.display = "none";
-});
+ 
 
 // FIRSTNAME -----------------------------------------------------------------------------------
 
