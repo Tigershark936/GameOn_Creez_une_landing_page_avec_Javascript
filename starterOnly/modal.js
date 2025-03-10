@@ -58,7 +58,7 @@ form.addEventListener( "submit", (e) => {
       break; // dès qu'un champ est vide, on sort de la boucle "for"
     } else {
       document.querySelector("form").style.display = "none";
-      document.querySelector("messageConfirmationForm").style.display = "block";
+      messageConfirmationForm.style.display = "block";
     }
   } 
 
@@ -72,7 +72,19 @@ form.addEventListener( "submit", (e) => {
   validateCvgCheckbox()
   
 });
- 
+
+// Close the confirmation message for the inscription
+ButtoncloseModalConfirmation.addEventListener('click', () => {
+  modalBackground.style.display = "none";
+
+  // Re-display only the form
+  form.style.display = "block"; 
+
+  // Reset the form to zero
+  form.reset(); 
+  messageConfirmationForm.style.display = "none"
+});
+
 
 // FIRSTNAME -----------------------------------------------------------------------------------
 
@@ -122,7 +134,7 @@ const validateSurname = () => {
 };
 
 
-// EMAIL -----------------------------------------------------------------------------------------
+// EMAIL ----------------------------------------------------------------------------------------
 
 // récuperer le champs email
 const emailInput = document.getElementById("email");
@@ -162,7 +174,6 @@ function validateEmail(){
 const dateOfBirthInput = document.getElementById("dateOfBirth");
 console.log(dateOfBirthInput);
 const dateOfBirthRegExp = new RegExp ('/^(?:(?:31([\/\-\.])(0?[13578]|1[02])\x01|(?:(?:29|30)\x02(0?[13-9]|1[0-2])\x02))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29([\/\-\.])0?2\x03(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])([\/\-\.])(0?[1-9]|1[0-2])\x04(?:(?:1[6-9]|[2-9]\d)?\d{2})$/i');
-const dateOfBirthValidate = dateOfBirthInput.value;
 
 
 // récupèrer la valeur de saisie de dateOfBirth 
