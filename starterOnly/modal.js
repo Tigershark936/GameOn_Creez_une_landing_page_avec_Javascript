@@ -85,8 +85,9 @@ const errorFirstname = document.getElementById("errorMessageFirstname");
   } else {
     errorFirstname.innerText = ``;
     firstnameInput.style.border = "none";
-    validateForm = true;
   }
+
+  
 };
 validateFirstname()
 
@@ -168,8 +169,7 @@ function validateDateOfBirth(){
   // récupération du champs dateOfBirth
   const dateOfBirthInput = document.getElementById("dateOfBirth");
   console.log(dateOfBirthInput);
-  // const dateOfBirthRegExp = new RegExp ('/^(?:(?:31([\/\-\.])(0?[13578]|1[02])\x01|(?:(?:29|30)\x02(0?[13-9]|1[0-2])\x02))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29([\/\-\.])0?2\x03(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])([\/\-\.])(0?[1-9]|1[0-2])\x04(?:(?:1[6-9]|[2-9]\d)?\d{2})$/i');
-  
+
   
   // récupèrer la valeur de saisie de dateOfBirth 
   console.log(dateOfBirthInput.value);
@@ -304,11 +304,12 @@ validateCvgCheckbox()
 ButtoncloseModalConfirmation.addEventListener('click', () => {
   modalBackground.style.display = "none";
 
-  // Re-display only the form
-  form.style.display = "block"; 
-
   // Reset the form to zero
   form.reset(); 
+
+  // Re-display only the form
+  form.style.display = "block"; 
+  
   messageConfirmationForm.style.display = "none";
   textErrorMsg.textContent = ``;
 });
