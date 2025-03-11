@@ -81,9 +81,11 @@ const errorFirstname = document.getElementById("errorMessageFirstname");
     // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
     errorFirstname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du prénom`;
     firstnameInput.style.border = "2px solid red";
+    validateForm = false; 
   } else {
     errorFirstname.innerText = ``;
     firstnameInput.style.border = "none";
+    validateForm = true;
   }
 };
 validateFirstname()
@@ -280,7 +282,6 @@ function validateCvgCheckbox(){
     validateForm = false;
   } else {
     errorMessageCvg.innerText = ``;
-    validateForm = true;
   }
 };
 validateCvgCheckbox()
@@ -288,10 +289,10 @@ validateCvgCheckbox()
 
 
 //------------------------------------------------------------------------------------
-// CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT 
+// CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET FORMULARY
 // -----------------------------------------------------------------------------------
 
-  // Si tous les inputs sont bien remplis dans le formulaire
+  // Si tous les inputs et la checkbox sont bien remplis dans le formulaire
   if (validateForm === true){
      document.querySelector("form").style.display = "none";
       messageConfirmationForm.style.display = "block";
@@ -309,6 +310,7 @@ ButtoncloseModalConfirmation.addEventListener('click', () => {
   // Reset the form to zero
   form.reset(); 
   messageConfirmationForm.style.display = "none";
+  textErrorMsg.textContent = ``;
 });
 
 
