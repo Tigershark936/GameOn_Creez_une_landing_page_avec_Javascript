@@ -14,6 +14,7 @@ function launchModal() {
 // Close modal 
 closeModalButton.addEventListener('click', () => {
   modalBackground.style.display = "none";
+  form.reset(); 
 });
 
 function editNav() {
@@ -35,6 +36,233 @@ let textErrorMsg = document.getElementById("errorMessageForm");
 const validateFormButton = document.getElementById("validateForm")
 const messageConfirmationForm = document.getElementById("confirmationForm")
 const ButtoncloseModalConfirmation = document.getElementById("closeModalConfirmation")
+
+
+//--------------------------------------------------------------------------------------
+
+function validateFirstname(validateFormValue){
+  // récuperer le champs firstname
+const firstnameInput = document.getElementById("firstname");
+console.log(firstnameInput);
+
+// récuperer la valeur du champs firstname
+console.log(firstnameInput.value);
+
+//récuperer l'élément html qui sert à afficher l'erreur firstname
+const errorFirstname = document.getElementById("errorMessageFirstname");
+
+  if (firstnameInput.value.length < 2){
+    // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
+    errorFirstname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du prénom`;
+    firstnameInput.style.border = "2px solid red";
+    validateForm = false; 
+  } else {
+    errorFirstname.innerText = ``;
+    firstnameInput.style.border = "none";
+  }
+  return validateForm;
+};
+
+//--------------------------------------------------------------------------------------
+
+const validateSurname = (validateFormValue) => {
+  
+  // récuperer le champs surname
+  const surnameInput = document.getElementById("surname");
+  console.log(surnameInput);
+  
+  // récuperer la valeur du champs surname
+  console.log(surnameInput.value);
+  
+  //récuperer l'élément html qui sert à afficher l'erreur surname
+  const errorSurname = document.getElementById("errorMessageSurname");
+  
+  if (surnameInput.value.length < 2){
+    // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
+    errorSurname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du nom`;
+    surnameInput.style.border = "2px solid red";
+  } else {
+    errorSurname.innerText = ``;
+    surnameInput.style.border = "none";
+  }
+  return validateForm;
+};
+
+//--------------------------------------------------------------------------------------
+
+function validateEmail(validateFormValue){
+  // récuperer le champs email
+  const emailInput = document.getElementById("email");
+  console.log(emailInput);
+  const emailRegExp = new RegExp ('^[a-zA-Z0-9.-]+[@]{1}[a-zA-Z0-9.-]+[.]{1}[a-z]{2,10}$');
+  
+  // récuperer la valeur du champs email
+  console.log(emailInput.value);
+  
+  //récuperer l'élément html qui sert à afficher l'erreur email
+  const errorEmail = document.getElementById("errorMessageEmail");
+
+  const isValidedEmail = emailRegExp.test(emailInput.value);
+  console.log(isValidedEmail);
+  // Vérifie si validateEmail.value est une valeur "false" (vide, null, undefined)
+  if (!emailInput.value){
+    errorEmail.textContent = `Le champs email ne peut pas être vide.`;
+    emailInput.style.border = "2px solid red";
+    validateForm = false; 
+  } else if (!emailInput.value.includes("@")) {
+    errorEmail.textContent = "Veuillez inclure '@' dans l'adresse e-mail il manque un symbole '@'";
+    emailInput.style.border = "2px solid red";
+    validateForm = false; 
+  } else if (!isValidedEmail){
+    errorEmail.innerText = `Veillez saisir un email valide`;
+    emailInput.style.border = "2px solid red";
+    validateForm = false; 
+  } else if(emailInput.value && isValidedEmail){
+    errorEmail.innerText = ``;
+    emailInput.style.border = "none";
+  }
+  return validateForm;
+};
+
+//----------------------------------------------------------------------------------------------------
+
+// Vérification de la saisie de la date de naissance
+function validateDateOfBirth(validateFormValue){
+
+// récupération du champs dateOfBirth
+const dateOfBirthInput = document.getElementById("dateOfBirth");
+console.log(dateOfBirthInput);
+
+
+// récupèrer la valeur de saisie de dateOfBirth 
+console.log(dateOfBirthInput.value);
+
+// permet d'envoyer le message d'erreur et de le faire afficher dans le html 
+const errorDateOfBirth = document.getElementById("errorMessageDateOfBirth");
+    
+  // permet de vérifier si le champs est vide
+  if (!dateOfBirthInput.value){
+    errorDateOfBirth.innerText = `Vous devez entrer votre date de naissance.`;
+    dateOfBirthInput.style.border = "2px solid red";
+    validateForm = false;
+  } else {
+    const dateOfBirthAsDateObject = new Date(dateOfBirthInput.value);
+    // Récupère la date saisie par l'utilisateur et la convertit en objet Date.
+    const yearOfBirth = parseInt (dateOfBirthAsDateObject.getFullYear().toString().substring(0, 4));
+    // parseInt(...) : Convertit "1994" en nombre 1994.
+    //.getFullYear() : Extrait l'année de l'objet Date.
+    // .toString() : Convertit le nombre (1994) en chaîne "1994".
+    //.substring(0, 4) : Extrait les 4 premiers caractères de la chaîne "1994", ce qui donne "1994".
+
+    const actuelDate = new Date();
+    //Permettre de récuperer l'année actuelle.
+    console.log(actuelDate);
+    const yearActuel = actuelDate.getFullYear();
+    // Permet d'extraire l'année actuelle sous forme de nombre
+    console.log(yearActuel);
+    //Affiche l'année actuelle dans la console.
+
+//L'âge est d'au moins 16 ans pour s'inscrire sinon un message d'erreur. < 16ans date de naissance valide
+    if ((yearActuel - yearOfBirth) < 16){
+      errorDateOfBirth.innerText = `Vous devez avoir plus de 16ans pour pouvoir vous inscrire.`;
+      dateOfBirthInput.style.border = "2px solid red";
+      validateForm = false;
+    } else {
+      errorDateOfBirth.innerText = ``;
+      dateOfBirthInput.style.border = 'none';
+    }
+  }
+  return validateForm;
+};
+
+//----------------------------------------------------------------------------------------------------
+
+const validateQuantityTournemant = (validateFormValue) => {
+
+  // récupèrer la valeur de la "how many tournemant"
+const quantityInput = document.getElementById("quantity");
+console.log(quantityInput);
+
+// récupèrer la valeur de saisie de quantityInput
+console.log(quantityInput.value);
+
+// Sert à envoyer le message d'erreur dans le HTML
+const errorQuantity = document.getElementById("errorMessageTournament");
+
+// Empêcher la saisie de caractères non numériques et empêche les utilisateurs de taper e, E, -, +, ou .
+quantityInput.addEventListener("keydown", (event) => {
+  if (event.key === "e" || event.key === "E" || event.key === "-" || event.key === "+" || event.key === "."){
+    event.preventDefault();
+  }
+});
+
+// Vérifie si le champs est rempli
+  if (!quantityInput.value){
+    errorQuantity.innerText = `Pour le nombre de concours, une valeur numérique doît être saisie.`;
+    quantityInput.style.border = "2px solid red";
+    validateForm = false;
+    // permet que l'utilisateur saisis un chiffre ou un nombre entre 1 et 99
+  } else if (isNaN(quantityInput.value) || quantityInput.value < 1 || quantityInput.value > 99) {
+  //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
+    errorQuantity.innerText = `Veuillez saisir uniquement un nombre entre 1 et 99.`;
+    quantityInput.style.border = "2px solid red";
+    validateForm = false;
+  } else {
+    errorQuantity.innerText = ``;
+    quantityInput.style.border = "none";
+  }
+  return validateForm;
+};
+  
+//----------------------------------------------------------------------------------------------------
+
+
+function checkLocation(validateFormValue){
+  // Récuperer tous les boutons radio du groupe "location"
+  let locationCheckboxes = document.querySelectorAll('input[type=radio]');
+  console.log(locationCheckboxes);
+  
+  // Permet d'envoyer le message d'erreur dans le HTML pour la selection d'un bouton radio non click
+  const errorSelectedCheckbox = document.getElementById("errorMessageLocation");
+  
+  //On suppose qu'aucun input type=radio n'est sélectionné au départ.
+    for (let i = 0; i < locationCheckboxes.length; i++) {
+    if (locationCheckboxes[i].checked) { 
+      console.log(locationCheckboxes[i].value);
+      errorSelectedCheckbox.textContent = "";
+      validateForm = true;
+      break; // Stop la boucle après avoir trouvé un input sélectionné
+    } else {
+      errorSelectedCheckbox.textContent = "Vous devez choisir une option.";
+      validateForm = false;
+    }
+  }
+  return validateForm;
+};
+
+//----------------------------------------------------------------------------------------------------
+
+function validateCvgCheckbox(validateFormValue){
+  // récuperer la checkbox du html à valider obligatoirement
+  const validateCvg = document.getElementById("checkbox1");
+  console.log(validateCvg);
+  
+  // permet d'envoyer le message d'erreur dans le HTML
+  const errorMessageCvg = document.getElementById("errorMessageCvg");
+
+  // Obligation d'avoir la checkbox CVG check pour le submit du formulaire
+  if(!validateCvg.checked){
+    errorMessageCvg.innerText = `Vous devez vérifier que vous acceptez les termes et conditions.`;
+    validateForm = false;
+  } else {
+    errorMessageCvg.innerText = ``;
+  }
+   return validateForm;
+};
+
+// -------------------------------------------------------------------------------------
+// EVENT SUBMIT FOR THE FORMULARY WITH CALL FUNCTIONS FOR THE INPUTS VALIDATION
+// -------------------------------------------------------------------------------------
 
 
 form.addEventListener( "submit", (e) => {
@@ -66,233 +294,49 @@ form.addEventListener( "submit", (e) => {
 // INPUT FIRSTNAME 
 // -------------------------------------------------------------------------------------
 
-function validateFirstname(){
-  // récuperer le champs firstname
-const firstnameInput = document.getElementById("firstname");
-console.log(firstnameInput);
-
-// récuperer la valeur du champs firstname
-console.log(firstnameInput.value);
-
-//récuperer l'élément html qui sert à afficher l'erreur firstname
-const errorFirstname = document.getElementById("errorMessageFirstname");
-
-  if (firstnameInput.value.length < 2){
-    // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
-    errorFirstname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du prénom`;
-    firstnameInput.style.border = "2px solid red";
-    validateForm = false; 
-  } else {
-    errorFirstname.innerText = ``;
-    firstnameInput.style.border = "none";
-  }
-
-  
-};
-validateFirstname()
-
-
+validateForm = validateFirstname(validateForm);
 
 // -------------------------------------------------------------------------------------
 // INPUT SURNAME 
 //--------------------------------------------------------------------------------------
 
-const validateSurname = () => {
-  
-  // récuperer le champs surname
-  const surnameInput = document.getElementById("surname");
-  console.log(surnameInput);
-  
-  // récuperer la valeur du champs surname
-  console.log(surnameInput.value);
-  
-  //récuperer l'élément html qui sert à afficher l'erreur surname
-  const errorSurname = document.getElementById("errorMessageSurname");
-  
-  if (surnameInput.value.length < 2){
-    // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
-    errorSurname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du nom`;
-    surnameInput.style.border = "2px solid red";
-  } else {
-    errorSurname.innerText = ``;
-    surnameInput.style.border = "none";
-  }
-};
-validateSurname()
-
-
+validateForm = validateSurname(validateForm);
 
 // -------------------------------------------------------------------------------------
 // INPUT EMAIL 
 //--------------------------------------------------------------------------------------
 
-function validateEmail(){
-  // récuperer le champs email
-  const emailInput = document.getElementById("email");
-  console.log(emailInput);
-  const emailRegExp = new RegExp ('^[a-zA-Z0-9.-]+[@]{1}[a-zA-Z0-9.-]+[.]{1}[a-z]{2,10}$');
-  
-  // récuperer la valeur du champs email
-  console.log(emailInput.value);
-  
-  //récuperer l'élément html qui sert à afficher l'erreur email
-  const errorEmail = document.getElementById("errorMessageEmail");
-
-  const isValidedEmail = emailRegExp.test(emailInput.value);
-  console.log(isValidedEmail);
-  // Vérifie si validateEmail.value est une valeur "false" (vide, null, undefined)
-  if (!emailInput.value){
-    errorEmail.textContent = `Le champs email ne peut pas être vide.`;
-    emailInput.style.border = "2px solid red";
-  } else if (!emailInput.value.includes("@")) {
-      errorEmail.textContent = "Veuillez inclure '@' dans l'adresse e-mail il manque un symbole '@'";
-      emailInput.style.border = "2px solid red";
-  } else if (!isValidedEmail){
-    errorEmail.innerText = `Veillez saisir un email valide`;
-    emailInput.style.border = "2px solid red";
-  } else if(emailInput.value && isValidedEmail){
-    errorEmail.innerText = ``;
-    emailInput.style.border = "none";
-  }
-};
-validateEmail()
-
-
+validateForm = validateEmail(validateForm);
 
 // -------------------------------------------------------------------------------------
 // DATE OF BIRTH
 // -------------------------------------------------------------------------------------
 
-// Vérification de la saisie de la date de naissance
-function validateDateOfBirth(){
-  
-  // récupération du champs dateOfBirth
-  const dateOfBirthInput = document.getElementById("dateOfBirth");
-  console.log(dateOfBirthInput);
-
-  
-  // récupèrer la valeur de saisie de dateOfBirth 
-  console.log(dateOfBirthInput.value);
-  
-  // permet d'envoyer le message d'erreur et de le faire afficher dans le html 
-  const errorDateOfBirth = document.getElementById("errorMessageDateOfBirth");
-  
-  // permet de vérifier si le champs est vide
-  if (!dateOfBirthInput.value){
-    errorDateOfBirth.innerText = `Vous devez entrer votre date de naissance.`;
-    dateOfBirthInput.style.border = "2px solid red";
-  } else {
-    errorDateOfBirth.innerText = ``;
-    dateOfBirthInput.style.border = 'none';
-  }
-};
-
-//La date est valide (en respectant les jours/mois/années, y compris les années bissextiles),
-//La date est inférieure à aujourd'hui (pas de dates futures),
-//L'âge est d'au moins 16 ans (donc la date de naissance doit être au plus "Aujourd’hui - 16 ans"),
-validateDateOfBirth()
-
-
+validateForm = validateDateOfBirth(validateForm);
 
 // -------------------------------------------------------------------------------------
 // HOW MANY TOURNAMENT QUESTION 
 //--------------------------------------------------------------------------------------
 
-const validateQuantityTournemant = () => {
-
-  // récupèrer la valeur de la "how many tournemant"
-const quantityInput = document.getElementById("quantity");
-console.log(quantityInput);
-
-// récupèrer la valeur de saisie de quantityInput
-console.log(quantityInput.value);
-
-// Sert à envoyer le message d'erreur dans le HTML
-const errorQuantity = document.getElementById("errorMessageTournament");
-
-// Empêcher la saisie de caractères non numériques et empêche les utilisateurs de taper e, E, -, +, ou .
-quantityInput.addEventListener("keydown", (event) => {
-  if (event.key === "e" || event.key === "E" || event.key === "-" || event.key === "+" || event.key === "."){
-    event.preventDefault();
-  }
-});
-
-  // Vérifie si le champs est rempli
-  if (!quantityInput.value){
-    errorQuantity.innerText = `Pour le nombre de concours, une valeur numérique doît être saisie.`;
-    quantityInput.style.border = "2px solid red";
-    // permet que l'utilisateur saisis un chiffre ou un nombre entre 1 et 99
-  } else if (isNaN(quantityInput.value) || quantityInput.value < 1 || quantityInput.value > 99) {
-    //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
-    errorQuantity.innerText = `Veuillez saisir uniquement un nombre entre 1 et 99.`;
-    quantityInput.style.border = "2px solid red";
-  } else {
-    errorQuantity.innerText = ``;
-    quantityInput.style.border = "none";
-  }
-};
-validateQuantityTournemant()
-
-
+validateForm = validateQuantityTournemant(validateForm);
 
 // -------------------------------------------------------------------------------------
 // WHICH TOURNAMENT IN THIS YEAR
 // -------------------------------------------------------------------------------------
 
-function checkLocation(){
-  // Récuperer tous les boutons radio du groupe "location"
-  let locationCheckboxes = document.querySelectorAll('input[type=radio]');
-  console.log(locationCheckboxes);
-  
-  // Permet d'envoyer le message d'erreur dans le HTML pour la selection d'un bouton radio non click
-  const errorSelectedCheckbox = document.getElementById("errorMessageLocation");
-  
-  //On suppose qu'aucun input type=radio n'est sélectionné au départ.
-    for (let i = 0; i < locationCheckboxes.length; i++) {
-    if (locationCheckboxes[i].checked) { 
-      console.log(locationCheckboxes[i].value);
-      errorSelectedCheckbox.textContent = "";
-      validateForm = true;
-      break; // Stop la boucle après avoir trouvé un input sélectionné
-    } else {
-      errorSelectedCheckbox.textContent = "Vous devez choisir une option.";
-      validateForm = false;
-    }
-  }
-};
-checkLocation()
-
-
+validateForm = checkLocation(validateForm)
 
 //--------------------------------------------------------------------------------------
 // VALIDATION CVG OF FORM 
 // -------------------------------------------------------------------------------------
-  
-function validateCvgCheckbox(){
-  // récuperer la checkbox du html à valider obligatoirement
-  const validateCvg = document.getElementById("checkbox1");
-  console.log(validateCvg);
-  
-  // permet d'envoyer le message d'erreur dans le HTML
-  const errorMessageCvg = document.getElementById("errorMessageCvg");
-
-  // Obligation d'avoir la checkbox CVG check pour le submit du formulaire
-  if(!validateCvg.checked){
-    errorMessageCvg.innerText = `Vous devez vérifier que vous acceptez les termes et conditions.`;
-    validateForm = false;
-  } else {
-    errorMessageCvg.innerText = ``;
-  }
-};
-validateCvgCheckbox()
-
-
+ 
+validateForm = validateCvgCheckbox(validateForm)
 
 //------------------------------------------------------------------------------------
 // CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET FORMULARY
 // -----------------------------------------------------------------------------------
 
-  // Si tous les inputs et la checkbox sont bien remplis dans le formulaire
+// Si tous les inputs et la checkbox sont bien remplis dans le formulaire
   if (validateForm === true){
      document.querySelector("form").style.display = "none";
       messageConfirmationForm.style.display = "block";
