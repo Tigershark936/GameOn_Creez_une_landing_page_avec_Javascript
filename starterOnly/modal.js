@@ -11,12 +11,6 @@ function launchModal() {
   modalBackground.style.display = "block";
 }
 
-// Close modal 
-closeModalButton.addEventListener('click', () => {
-  modalBackground.style.display = "none";
-  form.reset(); 
-});
-
 function editNav() {
   var topNavbar = document.getElementById("myTopnav");
   if (topNavbar.className === "topnav") {
@@ -187,7 +181,7 @@ console.log(quantityInput);
 console.log(quantityInput.value);
 
 // Sert à envoyer le message d'erreur dans le HTML
-const errorQuantity = document.getElementById("errorMessageTournament");
+const errorMessageQuantity = document.getElementById("errorMessageTournament");
 
 // Empêcher la saisie de caractères non numériques et empêche les utilisateurs de taper e, E, -, +, ou .
 quantityInput.addEventListener("keydown", (event) => {
@@ -198,17 +192,17 @@ quantityInput.addEventListener("keydown", (event) => {
 
 // Vérifie si le champs est rempli
   if (!quantityInput.value){
-    errorQuantity.innerText = `Pour le nombre de concours, une valeur numérique doît être saisie.`;
+    errorMessageQuantity.innerText = `Pour le nombre de concours, une valeur numérique doît être saisie.`;
     quantityInput.style.border = "2px solid red";
     validateForm = false;
     // permet que l'utilisateur saisis un chiffre ou un nombre entre 1 et 99
   } else if (isNaN(quantityInput.value) || quantityInput.value < 1 || quantityInput.value > 99) {
   //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
-    errorQuantity.innerText = `Veuillez saisir uniquement un nombre entre 1 et 99.`;
+    errorMessageQuantity.innerText = `Veuillez saisir uniquement un nombre entre 1 et 99.`;
     quantityInput.style.border = "2px solid red";
     validateForm = false;
   } else {
-    errorQuantity.innerText = ``;
+    errorMessageQuantity.innerText = ``;
     quantityInput.style.border = "none";
   }
   return validateForm;
@@ -333,7 +327,7 @@ validateForm = checkLocation(validateForm)
 validateForm = validateCvgCheckbox(validateForm)
 
 //------------------------------------------------------------------------------------
-// CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET FORMULARY
+// CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET AND STYLE FORMULARY
 // -----------------------------------------------------------------------------------
 
 // Si tous les inputs et la checkbox sont bien remplis dans le formulaire
@@ -344,21 +338,42 @@ validateForm = validateCvgCheckbox(validateForm)
 });
 
 
+function resetFormStyles() {
+  // Sélectionne tous les inputs du formulaire
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach(input => {
+    input.style.border = "none"; // Réinitialise la bordure
+  });
+
+  // Sélectionne tous les messages d'erreur et les efface
+  const errorMessages = document.querySelectorAll(".errorMessage");
+  errorMessages.forEach(error => {
+    error.innerText = "";
+  });
+}
+
 // Close the confirmation message for the inscription
 ButtoncloseModalConfirmation.addEventListener('click', () => {
   modalBackground.style.display = "none";
-
   // Reset the form to zero
   form.reset(); 
+  // Réinitialiser les styles et messages d'erreur
+  resetFormStyles();
 
-  // Re-display only the form
-  form.style.display = "block"; 
-  
+  // Re-display only the form  and not the confirmation message
+  form.style.display = "block";
   messageConfirmationForm.style.display = "none";
-  textErrorMsg.textContent = ``;
 });
 
+// Close modal with reset formulary
+closeModalButton.addEventListener('click', () => {;
+  modalBackground.style.display = "none";
+  form.reset(); 
+  resetFormStyles();
 
+  form.style.display = "block"; 
+  messageConfirmationForm.style.display = "none";
+});
 
 
 
