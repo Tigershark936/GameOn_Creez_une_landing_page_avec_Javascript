@@ -482,7 +482,7 @@ fieldset{
   white-space: nowrap;
 }
 .hero-text {
-  width: 146%;
+  width: 100%;
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
@@ -531,36 +531,53 @@ footer {
     display: block;
     box-shadow: unset;
   }
+
   .hero-content {
     background: #fff;
     color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
+    min-width: unset;
   }
+  .hero-content h1{
+    text-wrap: wrap;
+  }
+  
   .hero-content::after {
     content: unset;
   }
   .hero-content .btn-signup {
     display: none;
   }
+
   .hero-headline {
     font-size: 2.5rem;
     font-weight: 500;
-    /* white-space: normal;  interprète tous les types de caractères de retour à la ligne comme un espace blanc */
+    text-align: center;
+    /* white-space: normal; */
+    /* interprète tous les types de caractères de retour à la ligne comme un espace blanc */
   }
+
   .hero-text {
     width: unset;
     font-size: 0.813rem;
     text-align: center;
   }
+
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
   }
+
   .hero-section > .btn-signup {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
   }
+
   .copyrights {
     margin-top: 50px;
     text-align: center;

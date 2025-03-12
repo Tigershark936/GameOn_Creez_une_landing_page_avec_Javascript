@@ -330,11 +330,24 @@ validateForm = validateCvgCheckbox(validateForm)
 // CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET AND STYLE FORMULARY
 // -----------------------------------------------------------------------------------
 
+
+function registrationForm () {
+  messageConfirmationForm.style.display = "none";
+  form.submit();
+}
 // Si tous les inputs et la checkbox sont bien remplis dans le formulaire
   if (validateForm === true){
-     document.querySelector("form").style.display = "none";
-      messageConfirmationForm.style.display = "block";
+    document.querySelector("form").style.display = "none";
+    messageConfirmationForm.style.display = "block";
   }
+  
+// Close the confirmation message for the inscription with registration formulary in the network
+ButtoncloseModalConfirmation.addEventListener('click', () => {
+  modalBackground.style.display = "none";
+  registrationForm();
+  
+  messageConfirmationForm.style.display = "none";
+});
 });
 
 
@@ -352,23 +365,13 @@ function resetFormStyles() {
   });
 }
 
-// Close the confirmation message for the inscription
-ButtoncloseModalConfirmation.addEventListener('click', () => {
-  modalBackground.style.display = "none";
-  // Reset the form to zero
-  form.reset(); 
-  // Réinitialiser les styles et messages d'erreur
-  resetFormStyles();
-
-  // Re-display only the form  and not the confirmation message
-  form.style.display = "block";
-  messageConfirmationForm.style.display = "none";
-});
 
 // Close modal with reset formulary
 closeModalButton.addEventListener('click', () => {;
   modalBackground.style.display = "none";
+ // Reset the form to zero
   form.reset(); 
+  // Réinitialiser les styles et messages d'erreur
   resetFormStyles();
 
   form.style.display = "block"; 
