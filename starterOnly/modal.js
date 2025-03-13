@@ -43,7 +43,6 @@ let validateForm = true;
 function validateFirstname(){
   // récuperer le champs firstname
 const firstnameInput = document.getElementById("firstname");
-console.log(firstnameInput);
 
 // récuperer la valeur du champs firstname
 console.log(firstnameInput.value);
@@ -69,7 +68,6 @@ const validateSurname = () => {
   
   // récuperer le champs surname
   const surnameInput = document.getElementById("surname");
-  console.log(surnameInput);
   
   // récuperer la valeur du champs surname
   console.log(surnameInput.value);
@@ -94,7 +92,6 @@ const validateSurname = () => {
 function validateEmail(){
   // récuperer le champs email
   const emailInput = document.getElementById("email");
-  console.log(emailInput);
   const emailRegExp = new RegExp ('^[a-zA-Z0-9.-]+[@]{1}[a-zA-Z0-9.-]+[.]{1}[a-z]{2,10}$');
   
   // récuperer la valeur du champs email
@@ -132,7 +129,6 @@ function validateDateOfBirth(){
 
 // récupération du champs dateOfBirth
 const dateOfBirthInput = document.getElementById("dateOfBirth");
-console.log(dateOfBirthInput);
 
 
 // récupèrer la valeur de saisie de dateOfBirth 
@@ -182,7 +178,6 @@ const validateQuantityTournemant = () => {
 
   // récupèrer la valeur de la "how many tournemant"
 const quantityInput = document.getElementById("quantity");
-console.log(quantityInput);
 
 // récupèrer la valeur de saisie de quantityInput
 console.log(quantityInput.value);
@@ -221,23 +216,29 @@ quantityInput.addEventListener("keydown", (event) => {
 function checkLocation(){
   // Récuperer tous les boutons radio du groupe "location"
   let locationCheckboxes = document.querySelectorAll('input[type=radio]');
-  console.log(locationCheckboxes);
   
   // Permet d'envoyer le message d'erreur dans le HTML pour la selection d'un bouton radio non click
   const errorSelectedCheckbox = document.getElementById("errorMessageLocation");
   
-  //On suppose qu'aucun input type=radio n'est sélectionné au départ.
-    for (let i = 0; i < locationCheckboxes.length; i++) {
+  //On suppose qu'aucun input type=radio n'est sélectionné dans le formulaire au départ.
+  let checkboxLocationSelected = false;
+
+  for (let i = 0; i < locationCheckboxes.length; i++) {
     if (locationCheckboxes[i].checked) { 
       console.log(locationCheckboxes[i].value);
-      errorSelectedCheckbox.textContent = "";
+      checkboxLocationSelected = true;
       break; // Stop la boucle après avoir trouvé un input sélectionné
-    } else {
-      errorSelectedCheckbox.textContent = "Vous devez choisir une option.";
-      return false;
     }
   }
-  return true;
+
+// Si l'une des checkbox est selectionnée avec le controle de la boucle "for" dans le formulaire alors pas de message d'erreur.
+  if (checkboxLocationSelected){
+    errorSelectedCheckbox.textContent = "";
+    return true;
+  } else {
+    errorSelectedCheckbox.textContent = "Vous devez choisir une option.";
+    return false;
+  }
 };
 
 //----------------------------------------------------------------------------------------------------
@@ -245,7 +246,6 @@ function checkLocation(){
 function validateCvgCheckbox(){
   // récuperer la checkbox du html à valider obligatoirement
   const validateCvg = document.getElementById("checkbox1");
-  console.log(validateCvg);
   
   // permet d'envoyer le message d'erreur dans le HTML
   const errorMessageCvg = document.getElementById("errorMessageCvg");
@@ -294,7 +294,6 @@ form.addEventListener( "submit", (e) => {
 // INPUT FIRSTNAME 
 // -------------------------------------------------------------------------------------
 
-// 
 validateForm = validateFirstname() && validateForm;
 
 // -------------------------------------------------------------------------------------
