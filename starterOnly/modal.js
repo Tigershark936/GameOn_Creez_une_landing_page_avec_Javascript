@@ -287,50 +287,51 @@ form.addEventListener( "submit", (e) => {
     }
   }; 
 
-// On appelle les fonctions pour des validations de champs spécifiques au formulaire 
-
+ 
+// On appelle les fonctions pour des validations de champs spécifiques au formulaire, Si une fonction renvoie true, alors  ex: validateForm garde sa valeur (true) et si validateFirstname() renvoie false, alors validateForm devient false et mes inner.Text avec les styles s'afficheront pour chaque "inputs" mal remplis selon les conditions que j'ai apporté pour chaque input du formulaire.
 
 // -------------------------------------------------------------------------------------
 // INPUT FIRSTNAME 
 // -------------------------------------------------------------------------------------
 
-validateForm = validateForm && validateFirstname();
+// 
+validateForm = validateFirstname() && validateForm;
 
 // -------------------------------------------------------------------------------------
 // INPUT SURNAME 
 //--------------------------------------------------------------------------------------
 
-validateForm = validateForm && validateSurname();
+validateForm = validateSurname() && validateForm;
 
 // -------------------------------------------------------------------------------------
 // INPUT EMAIL 
 //--------------------------------------------------------------------------------------
 
-validateForm = validateForm && validateEmail();
+validateForm = validateEmail() && validateForm;
 
 // -------------------------------------------------------------------------------------
 // DATE OF BIRTH
 // -------------------------------------------------------------------------------------
 
-validateForm = validateForm && validateDateOfBirth();
+validateForm = validateDateOfBirth() && validateForm;
 
 // -------------------------------------------------------------------------------------
 // HOW MANY TOURNAMENT QUESTION 
 //--------------------------------------------------------------------------------------
 
-validateForm = validateForm && validateQuantityTournemant();
+validateForm = validateQuantityTournemant() && validateForm;
 
 // -------------------------------------------------------------------------------------
 // WHICH TOURNAMENT IN THIS YEAR
 // -------------------------------------------------------------------------------------
 
-validateForm = validateForm && checkLocation();
+validateForm = checkLocation() && validateForm;
 
 //--------------------------------------------------------------------------------------
 // VALIDATION CVG OF FORM 
 // -------------------------------------------------------------------------------------
  
-validateForm = validateForm && validateCvgCheckbox();
+validateForm = validateCvgCheckbox() && validateForm;
 
 //------------------------------------------------------------------------------------
 // CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET AND STYLE FORMULARY
