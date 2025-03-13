@@ -26,15 +26,21 @@ function editNav() {
 
 // sélectionne l'élément <form> de la page HTML.
 const form = document.querySelector("form");
+// sélectionne l'affiche du message d'erreur pour le bouton "c'est Parti".
 let textErrorMsg = document.getElementById("errorMessageForm");
-const validateFormButton = document.getElementById("validateForm")
-const messageConfirmationForm = document.getElementById("confirmationForm")
-const ButtoncloseModalConfirmation = document.getElementById("closeModalConfirmation")
+// Sélectionne le button de type of submit for the formulary.
+const validateFormButton = document.getElementById("validateForm");
+// Sélectionne la boite for the message of confirmation formulary.
+const messageConfirmationForm = document.getElementById("confirmationForm");
+// Sélectionne the button "fermer" for close to modal message of confirmation.
+const ButtoncloseModalConfirmation = document.getElementById("closeModalConfirmation");
+// Boolean qui servira à vérifier si tous les champs sont remplis ou pas.
+let validateForm = true;
 
 
 //--------------------------------------------------------------------------------------
 
-function validateFirstname(validateFormValue){
+function validateFirstname(){
   // récuperer le champs firstname
 const firstnameInput = document.getElementById("firstname");
 console.log(firstnameInput);
@@ -49,17 +55,17 @@ const errorFirstname = document.getElementById("errorMessageFirstname");
     // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
     errorFirstname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du prénom`;
     firstnameInput.style.border = "2px solid red";
-    validateForm = false; 
+    return false; 
   } else {
     errorFirstname.innerText = ``;
     firstnameInput.style.border = "none";
+    return true;
   }
-  return validateForm;
 };
 
 //--------------------------------------------------------------------------------------
 
-const validateSurname = (validateFormValue) => {
+const validateSurname = () => {
   
   // récuperer le champs surname
   const surnameInput = document.getElementById("surname");
@@ -75,16 +81,17 @@ const validateSurname = (validateFormValue) => {
     // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
     errorSurname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du nom`;
     surnameInput.style.border = "2px solid red";
+    return false;
   } else {
     errorSurname.innerText = ``;
     surnameInput.style.border = "none";
+    return true;
   }
-  return validateForm;
 };
 
 //--------------------------------------------------------------------------------------
 
-function validateEmail(validateFormValue){
+function validateEmail(){
   // récuperer le champs email
   const emailInput = document.getElementById("email");
   console.log(emailInput);
@@ -102,26 +109,26 @@ function validateEmail(validateFormValue){
   if (!emailInput.value){
     errorEmail.textContent = `Le champs email ne peut pas être vide.`;
     emailInput.style.border = "2px solid red";
-    validateForm = false; 
+    return false; 
   } else if (!emailInput.value.includes("@")) {
     errorEmail.textContent = "Veuillez inclure '@' dans l'adresse e-mail il manque un symbole '@'";
     emailInput.style.border = "2px solid red";
-    validateForm = false; 
+    return false; 
   } else if (!isValidedEmail){
     errorEmail.innerText = `Veillez saisir un email valide`;
     emailInput.style.border = "2px solid red";
-    validateForm = false; 
+    return false; 
   } else if(emailInput.value && isValidedEmail){
     errorEmail.innerText = ``;
     emailInput.style.border = "none";
+    return true;
   }
-  return validateForm;
 };
 
 //----------------------------------------------------------------------------------------------------
 
 // Vérification de la saisie de la date de naissance
-function validateDateOfBirth(validateFormValue){
+function validateDateOfBirth(){
 
 // récupération du champs dateOfBirth
 const dateOfBirthInput = document.getElementById("dateOfBirth");
@@ -138,7 +145,7 @@ const errorDateOfBirth = document.getElementById("errorMessageDateOfBirth");
   if (!dateOfBirthInput.value){
     errorDateOfBirth.innerText = `Vous devez entrer votre date de naissance.`;
     dateOfBirthInput.style.border = "2px solid red";
-    validateForm = false;
+    return false;
   } else {
     const dateOfBirthAsDateObject = new Date(dateOfBirthInput.value);
     // Récupère la date saisie par l'utilisateur et la convertit en objet Date.
@@ -160,18 +167,18 @@ const errorDateOfBirth = document.getElementById("errorMessageDateOfBirth");
     if ((yearActuel - yearOfBirth) < 16){
       errorDateOfBirth.innerText = `Vous devez avoir plus de 16ans pour pouvoir vous inscrire.`;
       dateOfBirthInput.style.border = "2px solid red";
-      validateForm = false;
+      return false;
     } else {
       errorDateOfBirth.innerText = ``;
       dateOfBirthInput.style.border = 'none';
+      return true;
     }
   }
-  return validateForm;
 };
 
 //----------------------------------------------------------------------------------------------------
 
-const validateQuantityTournemant = (validateFormValue) => {
+const validateQuantityTournemant = () => {
 
   // récupèrer la valeur de la "how many tournemant"
 const quantityInput = document.getElementById("quantity");
@@ -194,24 +201,24 @@ quantityInput.addEventListener("keydown", (event) => {
   if (!quantityInput.value){
     errorMessageQuantity.innerText = `Pour le nombre de concours, une valeur numérique doît être saisie.`;
     quantityInput.style.border = "2px solid red";
-    validateForm = false;
+    return false;
     // permet que l'utilisateur saisis un chiffre ou un nombre entre 1 et 99
   } else if (isNaN(quantityInput.value) || quantityInput.value < 1 || quantityInput.value > 99) {
   //isNAN => Vérifie si la valeur n'est pas un nombre valide (ex : si l'utilisateur tape du texte).//
     errorMessageQuantity.innerText = `Veuillez saisir uniquement un nombre entre 1 et 99.`;
     quantityInput.style.border = "2px solid red";
-    validateForm = false;
+    return false;
   } else {
     errorMessageQuantity.innerText = ``;
     quantityInput.style.border = "none";
+    return true;
   }
-  return validateForm;
 };
   
 //----------------------------------------------------------------------------------------------------
 
 
-function checkLocation(validateFormValue){
+function checkLocation(){
   // Récuperer tous les boutons radio du groupe "location"
   let locationCheckboxes = document.querySelectorAll('input[type=radio]');
   console.log(locationCheckboxes);
@@ -224,19 +231,18 @@ function checkLocation(validateFormValue){
     if (locationCheckboxes[i].checked) { 
       console.log(locationCheckboxes[i].value);
       errorSelectedCheckbox.textContent = "";
-      validateForm = true;
       break; // Stop la boucle après avoir trouvé un input sélectionné
     } else {
       errorSelectedCheckbox.textContent = "Vous devez choisir une option.";
-      validateForm = false;
+      return false;
     }
   }
-  return validateForm;
+  return true;
 };
 
 //----------------------------------------------------------------------------------------------------
 
-function validateCvgCheckbox(validateFormValue){
+function validateCvgCheckbox(){
   // récuperer la checkbox du html à valider obligatoirement
   const validateCvg = document.getElementById("checkbox1");
   console.log(validateCvg);
@@ -247,11 +253,11 @@ function validateCvgCheckbox(validateFormValue){
   // Obligation d'avoir la checkbox CVG check pour le submit du formulaire
   if(!validateCvg.checked){
     errorMessageCvg.innerText = `Vous devez vérifier que vous acceptez les termes et conditions.`;
-    validateForm = false;
+    return false;
   } else {
     errorMessageCvg.innerText = ``;
+    return true;
   }
-   return validateForm;
 };
 
 // -------------------------------------------------------------------------------------
@@ -288,50 +294,50 @@ form.addEventListener( "submit", (e) => {
 // INPUT FIRSTNAME 
 // -------------------------------------------------------------------------------------
 
-validateForm = validateFirstname(validateForm);
+validateForm = validateForm && validateFirstname();
 
 // -------------------------------------------------------------------------------------
 // INPUT SURNAME 
 //--------------------------------------------------------------------------------------
 
-validateForm = validateSurname(validateForm);
+validateForm = validateForm && validateSurname();
 
 // -------------------------------------------------------------------------------------
 // INPUT EMAIL 
 //--------------------------------------------------------------------------------------
 
-validateForm = validateEmail(validateForm);
+validateForm = validateForm && validateEmail();
 
 // -------------------------------------------------------------------------------------
 // DATE OF BIRTH
 // -------------------------------------------------------------------------------------
 
-validateForm = validateDateOfBirth(validateForm);
+validateForm = validateForm && validateDateOfBirth();
 
 // -------------------------------------------------------------------------------------
 // HOW MANY TOURNAMENT QUESTION 
 //--------------------------------------------------------------------------------------
 
-validateForm = validateQuantityTournemant(validateForm);
+validateForm = validateForm && validateQuantityTournemant();
 
 // -------------------------------------------------------------------------------------
 // WHICH TOURNAMENT IN THIS YEAR
 // -------------------------------------------------------------------------------------
 
-validateForm = checkLocation(validateForm)
+validateForm = validateForm && checkLocation();
 
 //--------------------------------------------------------------------------------------
 // VALIDATION CVG OF FORM 
 // -------------------------------------------------------------------------------------
  
-validateForm = validateCvgCheckbox(validateForm)
+validateForm = validateForm && validateCvgCheckbox();
 
 //------------------------------------------------------------------------------------
 // CONDITION OF VALIDATION MESSAGE FOR THE FORMULARY WITH EVENT RESET AND STYLE FORMULARY
 // -----------------------------------------------------------------------------------
 
 
-function registrationForm () {
+function registrationForm() {
   messageConfirmationForm.style.display = "none";
   form.submit();
 }

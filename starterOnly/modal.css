@@ -523,11 +523,20 @@ footer {
 
 @media screen and (max-width: 800px) {
 
+  .topnav .icon{
+    color: #ff0000;
+  }
+
+  .topnav .icon:active{
+    color: #fff;
+  }
+
   .header-logo img{
     height: 19px;
   }
 
   .hero-section {
+    min-height: 0px;
     display: block;
     box-shadow: unset;
   }
@@ -539,13 +548,14 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 0px;
     min-width: unset;
   }
   .hero-content h1{
-    text-wrap: wrap;
+    font-size: 2.35rem;
+    font-weight: bold;
   }
-  
+
   .hero-content::after {
     content: unset;
   }
@@ -554,17 +564,17 @@ footer {
   }
 
   .hero-headline {
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-align: center;
-    /* white-space: normal; */
+    white-space: normal;
     /* interprète tous les types de caractères de retour à la ligne comme un espace blanc */
   }
 
   .hero-text {
     width: unset;
-    font-size: 0.813rem;
-    text-align: center;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 17px;
   }
 
   .hero-img img {
@@ -579,7 +589,7 @@ footer {
   }
 
   .copyrights {
-    margin-top: 50px;
+    margin-top: 19px;
     text-align: center;
   }
 }
