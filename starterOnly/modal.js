@@ -50,7 +50,7 @@ console.log(firstnameInput.value);
 //récuperer l'élément html qui sert à afficher l'erreur firstname
 const errorFirstname = document.getElementById("errorMessageFirstname");
 
-  if (firstnameInput.value.length < 2){
+  if (firstnameInput.value.trim().length < 2){
     // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
     errorFirstname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du prénom`;
     firstnameInput.style.border = "2px solid red";
@@ -75,7 +75,7 @@ const validateSurname = () => {
   //récuperer l'élément html qui sert à afficher l'erreur surname
   const errorSurname = document.getElementById("errorMessageSurname");
   
-  if (surnameInput.value.length < 2){
+  if (surnameInput.value.trim().length < 2){
     // si il y a moins de 2 caractères afficher,insérer un texte d'erreur dans l'element avec un style sur l'input
     errorSurname.innerText = `Veuillez entrer 2 caractères ou plus pour le champ du nom`;
     surnameInput.style.border = "2px solid red";
@@ -100,7 +100,7 @@ function validateEmail(){
   //récuperer l'élément html qui sert à afficher l'erreur email
   const errorEmail = document.getElementById("errorMessageEmail");
 
-  const isValidedEmail = emailRegExp.test(emailInput.value);
+  const isValidedEmail = emailRegExp.test(emailInput.value.trim());
   console.log(isValidedEmail);
   // Vérifie si validateEmail.value est une valeur "false" (vide, null, undefined)
   if (!emailInput.value){
